@@ -3,126 +3,204 @@
   gap: 1rem;
 }
 
-.card {
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
+.contact-card {
+  background-color: var(--card);
+  border-radius: var(--radius);
   overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid var(--border);
 }
 
-.card-content {
-  padding: 1rem;
+.contact-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-.card-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+.contact-card-content {
+  padding: 1.25rem;
 }
 
-.contact-info {
+.contact-card-header {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
 }
 
-.avatar {
-  height: 3rem;
-  width: 3rem;
-  border-radius: 9999px;
+.contact-card-header::before {
+  content: "";
+  position: absolute;
+  top: -1.25rem;
+  left: -1.25rem;
+  right: -1.25rem;
+  height: 0.25rem;
+  background-color: var(--group-color, var(--primary));
+}
+
+.contact-avatar {
+  flex-shrink: 0;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
   overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.avatar-fallback {
-  height: 100%;
+.contact-avatar:hover {
+  transform: scale(1.05);
+}
+
+.contact-avatar-fallback {
   width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #0070f3;
+  background: linear-gradient(135deg, var(--group-color, var(--primary)), var(--group-color, var(--primary)));
   color: white;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.contact-avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contact-info {
+  flex: 1;
+  min-width: 0;
 }
 
 .contact-name {
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin-bottom: 0.25rem;
+  cursor: pointer;
+  color: var(--card-foreground);
+  transition: color 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.group-badge {
+.contact-name:hover {
+  color: var(--primary);
+}
+
+.contact-group-badge {
   display: inline-block;
-  margin-top: 0.25rem;
   font-size: 0.75rem;
   padding: 0.125rem 0.5rem;
   border-radius: 9999px;
-  border: 1px solid #d1d5db;
+  color: var(--group-color, var(--primary));
+  font-weight: 500;
 }
 
-.dropdown {
+.contact-menu {
   position: relative;
 }
 
-.dropdown-button {
-  padding: 0.25rem;
-  border-radius: 0.375rem;
+.contact-menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: var(--card-foreground);
 }
 
-.dropdown-button:hover {
-  background-color: #f3f4f6;
+.contact-menu-button:hover {
+  background-color: var(--input);
 }
 
-.dropdown-icon {
-  height: 1rem;
-  width: 1rem;
+.contact-menu-icon {
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
-.dropdown-menu {
+.contact-menu-dropdown {
   position: absolute;
   right: 0;
+  top: 100%;
   z-index: 10;
-  margin-top: 0.25rem;
-  min-width: 8rem;
-  padding: 0.5rem;
-  background-color: white;
-  border-radius: 0.375rem;
+  min-width: 10rem;
+  background-color: var(--card);
+  border-radius: var(--radius);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border);
+  overflow: hidden;
 }
 
-.dropdown-item {
+.contact-menu-item {
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: none;
   font-size: 0.875rem;
-  border-radius: 0.25rem;
   text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: var(--card-foreground);
 }
 
-.dropdown-item:hover {
-  background-color: #f3f4f6;
+.contact-menu-item:hover {
+  background-color: var(--input);
 }
 
-.menu-icon {
-  margin-right: 0.5rem;
-  height: 1rem;
+.contact-menu-item-danger {
+  color: var(--danger);
+}
+
+.contact-menu-item-danger:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.contact-menu-item-icon {
   width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
 }
 
 .contact-details {
-  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-.detail-item {
+.contact-detail-item {
   display: flex;
   align-items: center;
+  gap: 0.75rem;
   font-size: 0.875rem;
-  margin-bottom: 0.5rem;
 }
 
-.detail-icon {
-  margin-right: 0.5rem;
-  height: 1rem;
+.contact-detail-icon {
   width: 1rem;
-  color: #6c757d;
+  height: 1rem;
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.contact-detail-text {
+  color: var(--card-foreground);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .modal-backdrop {
@@ -136,55 +214,72 @@
   align-items: center;
   justify-content: center;
   z-index: 50;
+  backdrop-filter: blur(4px);
 }
 
 .modal {
-  background-color: white;
-  border-radius: 0.5rem;
+  background-color: var(--card);
+  border-radius: var(--radius);
   width: 100%;
   max-width: 28rem;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border);
+  overflow: hidden;
 }
 
 .modal-header {
-  padding: 1rem;
-  border-bottom: 1px solid #e5e7eb;
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .modal-title {
   font-size: 1.25rem;
   font-weight: 600;
+  color: var(--card-foreground);
 }
 
 .modal-body {
-  padding: 1rem;
+  padding: 1.25rem;
 }
 
 .modal-footer {
-  padding: 1rem;
-  border-top: 1px solid #e5e7eb;
+  padding: 1.25rem;
+  border-top: 1px solid var(--border);
   display: flex;
   justify-content: flex-end;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
-.btn-secondary {
-  background-color: white;
-  color: #374151;
-  border: 1px solid #d1d5db;
+.modal-button-secondary {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--card-foreground);
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
-.btn-secondary:hover {
-  background-color: #f3f4f6;
+.modal-button-secondary:hover {
+  background-color: var(--input);
 }
 
-.btn-danger {
-  background-color: #ef4444;
+.modal-button-danger {
+  padding: 0.5rem 1rem;
+  background-color: var(--danger);
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 500;
   color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
-.btn-danger:hover {
-  background-color: #dc2626;
+.modal-button-danger:hover {
+  background-color: var(--danger-hover);
 }
 
 @media (min-width: 768px) {
