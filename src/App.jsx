@@ -129,12 +129,26 @@ export default function App() {
     setContacts(contacts.filter((contact) => contact.id !== id))
   }
 
-  const handleSaveContact = (contact) => {
+ const handleSaveContact = (contact) => {
+    const isDuplicate = contacts.some((c) => {
+      if (selectedContact && c.id === contact.id) {
+        return false
+      }
+      
+      const emailMatch = c.email.toLowerCase().trim() === contact.email.toLowerCase().trim()
+      const phoneMatch = c.phone.replace(/\D/g, "") === contact.phone.replace(/\D/g, "")
+
+      return emailMatch || phoneMatch
+    })
+
+    if (isDuplicate) {
+      alert("A contact with this email or phone number already exists.")
+      return 
+    }
+
     if (selectedContact) {
-      // Edit existing contact
       setContacts(contacts.map((c) => (c.id === contact.id ? contact : c)))
     } else {
-      // Add new contact
       setContacts([...contacts, contact])
     }
     setIsFormOpen(false)
